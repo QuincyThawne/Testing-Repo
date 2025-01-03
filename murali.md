@@ -7,13 +7,14 @@
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=muralivennapusa&theme=onedark" width="45%" alt="Productive Time"/>
   <br>
   <br>
-  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/pacman%20gif.gif" alt="yuji gif" width="90%"/>
+  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/pacman%20gif.gif" alt="pacman gif" width="90%"/>
   <br>
   <br>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=muralivennapusa&theme=dracula" width="46%" alt="Streak Stats"/>
   <img src="https://github-readme-stats.vercel.app/api?username=muralivennapusa&show_icons=true&locale=en&theme=highcontrast" width="44%" alt="GitHub Stats"/>
   <br>
   <br>
+  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/awesome%20workspace.gif" alt="coding" width="90%"/>
   <img src="https://github-contributor-stats.vercel.app/api?username=muralivennapusa&limit=10&theme=material-palenight&combine_all_yearly_contributions=true" width="45%" alt="Contributions"/>
   <br>
 </div>
