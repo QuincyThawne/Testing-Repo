@@ -24,4 +24,5 @@
 ▀▀▀▀▀▀▀▀▀▀▀▀▀-     ▀▀▀▀▀▀▀▀▀▀       '╧╧╧╧╧╧╧╧╧`     ╚ ╧╧╧- ▀  ╚═╝     ╚═╝╚══════╝╚══════╝   ╚═╝        ╚═╝    ╚═════╝  ╚═════╝
 ```
 
-- Stats Here <a href="https://github.com/QuincyThawne/Testing-Repo/blob/main/murali.md">Murali Stats</a>
+- Git Stats Here <a href="https://github.com/QuincyThawne/Testing-Repo/blob/main/murali.md">Murali Stats</a>
+- Resume Place holder <a href="https://www.linkedin.com/in/murali-vennapusa-a935b025b/">LinkedIn for now</a>
