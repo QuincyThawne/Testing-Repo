@@ -14,11 +14,12 @@
   <img src="https://github-readme-stats.vercel.app/api?username=muralivennapusa&show_icons=true&locale=en&theme=highcontrast" width="44%" alt="GitHub Stats"/>
   <br>
   <br>
-  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/awesome%20workspace.gif" alt="coding" width="45%"/>
+  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/pro%20coder.gif" alt="coding" width="45%"/>
   <img src="https://github-contributor-stats.vercel.app/api?username=muralivennapusa&limit=10&theme=material-palenight&combine_all_yearly_contributions=true" width="45%" alt="Contributions"/>
   <br>
+  <br>
 </div>
-  
+<br>
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=muralivennapusa&bg_color=0d1117&title_color=ff4500&line=00ff00&point=ffaa00&theme=github-compact" alt="Activity Graph" width="100%"/>
-
+<br>
 <img src="https://github-profile-trophy.vercel.app/?username=muralivennapusa&theme=dracula&no-frame=true&margin-w=2" width="100%" alt="Trophies"/>
