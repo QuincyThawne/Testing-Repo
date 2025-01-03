@@ -14,7 +14,7 @@
   <img src="https://github-readme-stats.vercel.app/api?username=muralivennapusa&show_icons=true&locale=en&theme=highcontrast" width="44%" alt="GitHub Stats"/>
   <br>
   <br>
-  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/awesome%20workspace.gif" alt="coding" width="90%"/>
+  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/awesome%20workspace.gif" alt="coding" width="45%"/>
   <img src="https://github-contributor-stats.vercel.app/api?username=muralivennapusa&limit=10&theme=material-palenight&combine_all_yearly_contributions=true" width="45%" alt="Contributions"/>
   <br>
 </div>
