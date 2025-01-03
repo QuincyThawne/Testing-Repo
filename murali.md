@@ -7,7 +7,7 @@
   <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=muralivennapusa&theme=onedark" width="45%" alt="Productive Time"/>
   <br>
   <br>
-  <img src="https://user-images.githubusercontent.com/74038190/235224431-e8c8c12e-6826-47f1-89fb-2ddad83b3abf.gif" alt="yuji gif" width="40%"/>
+  <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/pacman%20gif.gif" alt="yuji gif" width="40%"/>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=muralivennapusa&theme=dracula" width="47%" alt="Streak Stats"/>
   <br>
   <br>
