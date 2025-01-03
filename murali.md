@@ -10,9 +10,9 @@
   <img src="https://github.com/QuincyThawne/Testing-Repo/blob/main/Templates/pacman%20gif.gif" alt="yuji gif" width="90%"/>
   <br>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=muralivennapusa&theme=dracula" width="47%" alt="Streak Stats"/>
-  <br>
-  <br>
   <img src="https://github-readme-stats.vercel.app/api?username=muralivennapusa&show_icons=true&locale=en&theme=highcontrast" width="45%" alt="GitHub Stats"/>
+  <br>
+  <br>
   <img src="https://github-contributor-stats.vercel.app/api?username=muralivennapusa&limit=10&theme=material-palenight&combine_all_yearly_contributions=true" width="45%" alt="Contributions"/>
   <br>
 </div>
