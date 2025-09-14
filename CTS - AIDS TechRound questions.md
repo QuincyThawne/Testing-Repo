@@ -1,0 +1,355 @@
+Panel 4
+Remove vowels from string 
+Uppercase to lowecase in string 
+Partition by 
+Joins 
+Project explaination 
+Scenerio based ml questions,which algorithms can be used 
+Rag
+Precision and recall 
+What is cloud 
+List the certifications 
+Did you provide any bribe 
+Any location 
+Any role 
+Any shifts
+
+Panel 20:
+Self Intro
+Certifications Completed
+SQL - like, group by, explain abt inner join and left join, diff b/w rank and denserank
+Python - gcd, reverse two list and then merge
+Cloud computing
+Adv of cloud over local server
+Unstructured and structured dataset - adv and disadv
+CTS hackathon project explaination
+Flexible to work in other domains?
+Flexible to work at any place?
+Flexible for any shifts?
+
+Panel no:4
+  1.self intro
+2. reverse a string
+3. Print duplicates in the list 
+4. Reverse a sentence 
+5. Print common elements from two lists
+6. Difference between xgboost and lightbgm
+7. Difference between linear and logistic regression
+8. About projects other than cts
+9. About CTS projects
+10. difference window function row_number,rank,denserank
+11. Query on dense rank
+12. Left join
+13. Where having
+14. Group by
+15. difference between precision and recall
+16. cloud experience
+17. Exception handling 
+18. Iaas, paas,saas
+19. Data Bricks
+20. About projects in depth 
+21. behavioural questions and team work
+22. Are you flexible to any shift ?
+23. Are you flexible to work at any  location?
+24. Are you flexible to work in any domain?
+25. Certificate explanation
+26. Preferred domain to work
+27. Did you provide any bribe
+
+panel 12:
+self introduction
+certifications done 
+about AWS
+About S3 buckets
+whether a number is prime number or not
+python code to find even number
+write a sql where query where the date format will be as 'YYYY-MM-DD' extract all the data of employees between the year of 2015 of January to December of 2020
+and write all the sql query of type of joins and explained the joins
+what is bias?
+certification completed
+cts project explanation
+flexibility to location and workshift
+string reversal
+pattern problems
+
+Panel no :14 
+Self introduction 
+Difference btwn set and list
+About sub queries ,groupby
+Explain about CTS hackathon 
+About gen ai models 
+Oops concept in python 
+About random forest ,xg boost 
+Python code for factorial of number using recursion 
+Take input and print the max number
+
+Panel 10
+Self Introduction
+Explain about the projects, what models you have used
+Python Programs:
+Remove the whitespaces in the sentence, 
+Count the no.of whitespaces in the sentence
+Print repeated characters in the sentence along with the count of repetition
+SQL:
+Create table
+Count of no.of students in each department
+ORDER  BY
+LIKE
+Questions on inner join and Left join
+Cloud concepts
+ML models - What is Regression
+Challenges faced in projects
+Are you flexible to any shift ?
+Are you flexible to work at any  location?
+Are you flexible to work in any domain?
+
+panel 13
+self introduction
+python basic program for reverse the string,list operation such as append,remove a element from a list
+sql query types of joins,to guess the joins output,simple sql query to count of total record from a table
+ml models and what you used for hackathon and advantages of ur model and other models ml ,why you choose the model,what will u do if the dataset feature is enormous 
+discussed about project in depth
+questions based on cloud ,what cloud services you worked on ,what are the other models available in cloud and why you choose the cloud servies
+scenario based questions based on collaboration,what action you would take if your other teams not able to work on ,if they facing some technical glitch
+
+Panel 4
+Self intro
+Remove vowel from string
+convert the string into uppercase
+sql : display the day from the date
+display join without the common rows from 2 tables (without intersecting elements)
+how you will check duplicates
+differentiate row_number, rank, dense rank
+Difference between having, where, group by , order by
+Algorithms used in your project, project related question.
+LLM, about cloud.
+Are you flexible to any shift ?
+Are you flexible to work at any  location?
+Are you flexible to work in any domain?
+
+Panel 15
+Self Intro
+Talk about your CTS Hackathon, your contribution 
+About Cloud
+About LLM(have you used?)
+Python- create array with elements,sort them,sort in descending order,sum the elements in that list
+SQL- print a single row in a table whose empid is 1,how many employees working in each department, left join, find the employee's latest joining date(like 1 emp may have multiple joining dates)
+Why Azure,what you used there, why not other cloud
+General -flexible to work, what role do you expect,what if you did not get that role
+
+Panel 1
+Self intro
+Python codes - min,max ,odd numbers from list
+Creating inserting table, counting the no.of employees having same id
+About cloud services
+Ml models
+
+Prasanth - Panel 9
+1.check whether the num is prime
+2.given string,you have to take only numbers from that and sum it
+3.even num from list
+4.left join vs cross join diff
+5.told to write subquery eg
+5.to do left join,for two tables.
+6.ml models real world use cases
+7.cloud 
+8.internships
+9.shift,industry  based question...
+
+Panel 2
+Self intro
+CTS project 
+Sql - window functions, joins 
+Query - 2nd highest salary 
+Python - given a list and asked to find count of elements using dictionary 
+Certifications
+ML - data preprocessing, models used , model selection 
+Strength 
+Weaknesses
+
+panel 9
+
+1.self intro
+2.hackathon project in detail(problem statement, available   solutions, your solution, how your solution is better than the existing ones in the market)
+3.lambda functions
+4.joins in sql
+5.group by in sql
+6.order by in sql
+7.limit in sql
+8.what do you know about cloud ?(he will ask in depth on topics whatever u said you know about the cloud)
+9.private key, foreign key, unique key
+10.what ml models u know?(same as 8 make sure to say only what u know well)
+11.your personal projects in detail and also about the packages or modules u used in your project
+12. certifications u did
+
+panel 5: self intro                                                                                                                                                        List creation: using append() and insert().
+Converting a list into a tuple.
+Understanding sets in Python.
+Searching for an element (e.g., 956) in a list, tuple, and set with 1000 records — be prepared to discuss the difference in time complexity.
+Python program to count the number of words in a sentence.
+sql program to remove a specific letter from a string and print the remaining string.                                                                  Real-time examples of SQL usage.
+SQL set operators.
+Query to print a row twice even if the table has only a single entry of that row.
+SQL string functions.                                                                                                                                                                   If a project requires learning a new technology, explain how i will approach it.
+If a project requires longer working hours, describe how i would manage it.
+Availability for night shifts
+
+Panel 2:
+self intro
+maximum element in a list
+print the repeating words in a string
+what is inner join, how does it differ from left join and right join
+retrive the count of employees in each department in the employee table
+external certifications
+cloud fundamentals
+pre requisites for developing a ML model
+accuracy metrices to evaluate a model
+
+Panel no:4
+self intro
+reverse a string
+duplicate identification from the list
+Difference between linear and logistic regression
+cts project explanation
+Certificate explanation
+when to use where clause and when to use having
+difference between linear and logistic regression
+difference window function row_number,rank,denserank
+difference between precision and recall
+cloud experience
+behavioural questions
+Are you flexible to any shift ?
+Are you flexible to work at any  location?
+Are you flexible to work in any domain?
+
+panel no:1
+
+self intro
+code to print vowels
+create table
+insert the data into table
+groping the data
+how catboost works
+randomforest regression
+xgboost 
+ensembling models
+how industry works on inheritance concept in java
+
+PANEL NO:14
+SELF INTRO
+DIFF BETWEEN LIST AND TUPLE
+ABOUT SQL CLAUSES
+TYPES OF KEYS IN SQL
+ABOUT ML MODELS
+OOPS CONCEPT IN PYTHON
+PYTHON CODE- TAKING USERINPUT AND MULTIPLYING IT BY 10
+IDENTIFY LARGER TWO NUMBERS
+SQL CODE: SECOND HIGHEST SALARY
+DIFF BETWEEN DECISION TREE AND RANDOM FOREST
+
+Panel 3
+Self intro
+Internship 
+About project in resume
+Cts project
+Explain models you used
+Cloud services you used
+ mentioned in your 
+Write code to reverse your name
+Write code to print odd numbers less than or equal to 10.
+Write a code by yourself and explain it
+What is the difference between an Inner Join and an left Outer Join?
+The ages of A, B, and C are in the ratio 2:5:8. If the sum of their ages is 75, what is the age of C?
+What is the difference between on-premises and cloud services?
+What is Generative AI?
+Window function
+
+Pannel2
+self intro
+About Projects
+Sql(top 3 salary,query using left join,comparision b\w left join and right join)
+python(reverse a string,print duplicates)
+ML models(evaluation metrices,how do you improve model frequency)
+cloud(azure,aws)
+
+Panel 6
+
+Introduce yourself 
+Explain the project mentioned in your resume
+Write code to find missing element in an array
+Write sql query for finding 3rd highest salary 
+Types of join(diff between inner join and outer join)
+Diff between tuple ,Dictionary,List
+Types of ML (answer with real world examples)
+Difference between database and files
+What do you know about cloud
+Are you flexible to any shift ?
+Are you flexible to work at any  location?
+Are you flexible to work in any domain?
+What do you know about cognizant?
+
+panel 1 
+self intro 
+python - remove duplicates from list , 
+               print odd numbers from the list , 
+               and print max number from list .
+SQL - create table with student id , name and mark
+          print the highest mark
+ML - XGBoost , Random forest 
+about projects 
+overfitting and underfitting , 
+about internships,
+
+panel 19
+self intro
+about cts Projects in detail and what models used in your project
+name the types of dsa in python 
+tuple and sets
+sort the list in descending order
+sql where vs having
+group by fn
+print the first_order and last_order date of a customer Using aggregrate fn[using max and min fn]
+ML types of regression
+Mean squared error
+abt the performance metrics used in regression
+
+panel 15
+Introduce yourself
+pandas,matplotlib(you mentioned you know python so you should answer for this)
+sql groupby
+project in depth(cts)
+
+Panel 3 – Questions
+
+Introduce yourself.
+Explain your internship in detail.
+Explain every project mentioned in your resume.
+Explain your hackathon project in detail.
+Write code to generate random numbers.
+Write code to print even numbers less than or equal to 10.
+What is the difference between an Inner Join and an Outer Join?
+How do you debug code in the command-line interface?
+An aptitude question: The ages of A, B, and C are in the ratio 2:5:8. If the sum of their ages is 75, what is the age of C?
+What is the difference between supervised and unsupervised learning?
+What is the difference between on-premises and cloud services?
+What is Generative AI?
+
+
+Panel 9
+List addition
+Tuple vs list 
+Sql joins
+Sql window functions
+Supervised unsupervised 
+Random forest vs clustering
+Cloud fundamentals
+
+
+panel 1 
+list sorted (builtin)
+reverse  (builtin)
+sql sort
+general questions realate to ml
+supervised ,unsupervised
+overfitting
+underfitting
