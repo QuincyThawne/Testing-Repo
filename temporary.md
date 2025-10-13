@@ -1121,7 +1121,8 @@ const App = () => (
               {/* Generic course detail fallback for other courses */}
 
 
-                <Route path="/courses/:courseId" element={<ProtectedRoute><CourseDetail /></ProtectedRoute>} />
+                <Route path="/courses/:courseId" element={<ProtectedRoute><CourseDetail /></ProtectedRoute>}
+/>
               <Route
                 path="/faculty"
                 element={
