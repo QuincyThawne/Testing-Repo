@@ -567,3 +567,430 @@ for e in range(len(arr)):
 
 ---
 
+```Typescript
+
+import { useEffect, useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import DashboardLayout from "@/components/DashboardLayout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { supabase } from "@/integrations/supabase/client";
+import { BookOpen, Plus, Users, Calendar } from "lucide-react";
+import { Link } from "react-router-dom";
+import { toast } from "sonner";
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  code: string;
+  campus: string;
+}
+
+interface Enrollment {
+  id: string;
+  course_id: string;
+  courses: Course;
+}
+
+interface GreenLeaderboardRow {
+  user_id: string;
+  total_points: number;
+  profiles: {
+    full_name: string | null;
+  } | null;
+}
+
+const Dashboard = () => {
+  const { profile } = useAuth();
+  const [enrolledCourses, setEnrolledCourses] = useState<Enrollment[]>([]);
+  const [createdCourses, setCreatedCourses] = useState<Course[]>([]);
+  const [availableCourses, setAvailableCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [greenPoints, setGreenPoints] = useState(0);
+  const [greenLeaderboard, setGreenLeaderboard] = useState<GreenLeaderboardRow[]>([]);
+  const [upcomingOrders, setUpcomingOrders] = useState<number>(0);
+  const [dueBooks, setDueBooks] = useState<number>(0);
+
+  useEffect(() => {
+    loadDashboardData();
+  }, [profile]);
+
+  const loadDashboardData = async () => {
+    if (!profile) return;
+
+    try {
+      if (profile.role === "student") {
+        // Load enrolled courses
+        const { data: enrollments, error: enrollError } = await supabase
+          .from("enrollments")
+          .select("*, courses(*)")
+          .eq("student_id", profile.id);
+
+        if (enrollError) throw enrollError;
+        setEnrolledCourses(enrollments || []);
+
+        // Load available courses
+        const enrolledIds = enrollments?.map(e => e.course_id) || [];
+        
+        let availableQuery = supabase
+          .from("courses")
+          .select("*");
+        
+        // Only filter out enrolled courses if there are any
+        if (enrolledIds.length > 0) {
+          availableQuery = availableQuery.not("id", "in", `(${enrolledIds.join(",")})`);
+        }
+        
+        const { data: available, error: availError } = await availableQuery.limit(6);
+
+        if (availError) throw availError;
+        setAvailableCourses(available || []);
+      } else if (profile.role === "faculty") {
+        // Load created courses
+        const { data: courses, error } = await supabase
+          .from("courses")
+          .select("*")
+          .eq("faculty_id", profile.id);
+
+        if (error) throw error;
+        setCreatedCourses(courses || []);
+      }
+
+      // Sustainability quick stats
+      const [{ data: actions }, { data: leaderboard }] = await Promise.all([
+        supabase
+          .from("campus_green_actions")
+          .select("points")
+          .eq("user_id", profile.id),
+        supabase
+          .from("campus_green_actions")
+          .select("user_id, points, profiles(full_name)")
+          .order("points", { ascending: false }),
+      ]);
+
+      const totalPoints = (actions || []).reduce(
+        (acc, row) => acc + Number(row.points ?? 0),
+        0
+      );
+      setGreenPoints(totalPoints);
+
+      const leaderboardMap = new Map<string, GreenLeaderboardRow>();
+      (leaderboard || []).forEach((row: any) => {
+        const current = leaderboardMap.get(row.user_id);
+        const points = Number(row.points ?? 0);
+        if (current) {
+          current.total_points += points;
+        } else {
+          leaderboardMap.set(row.user_id, {
+            user_id: row.user_id,
+            total_points: points,
+            profiles: row.profiles,
+          });
+        }
+      });
+      setGreenLeaderboard(
+        Array.from(leaderboardMap.values())
+          .sort((a, b) => b.total_points - a.total_points)
+          .slice(0, 3)
+      );
+
+      // Campus life reminders
+      if (profile.role === "student") {
+        const [{ data: upcoming }, { data: fines }] = await Promise.all([
+          supabase
+            .from("canteen_orders")
+            .select("id")
+            .eq("user_id", profile.id)
+            .in("status", ["pending", "preparing", "ready"]),
+          supabase
+            .from("borrow_records")
+            .select("id")
+            .eq("user_id", profile.id)
+            .eq("status", "overdue"),
+        ]);
+        setUpcomingOrders(upcoming?.length || 0);
+        setDueBooks(fines?.length || 0);
+      }
+    } catch (error: any) {
+      console.error("Dashboard loading error:", error);
+      toast.error(error.message || "Failed to load dashboard data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const enrollInCourse = async (courseId: string) => {
+    try {
+      const { error } = await supabase.from("enrollments").insert({
+        course_id: courseId,
+        student_id: profile?.id,
+      });
+
+      if (error) throw error;
+      toast.success("Enrolled successfully!");
+      loadDashboardData();
+    } catch (error: any) {
+      toast.error(error.message || "Failed to enroll");
+    }
+  };
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading your dashboard...</p>
+          </div>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  return (
+    <DashboardLayout>
+      <div className="space-y-8">
+        {/* Welcome Section */}
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-accent p-8 text-primary-foreground shadow-hard">
+          <div className="relative z-10">
+            <h1 className="text-3xl font-bold mb-2">
+              Welcome back, {profile?.full_name || "User"}!
+            </h1>
+            <p className="text-primary-foreground/90 text-lg">
+              {profile?.role === "student" && "Ready to continue your learning journey?"}
+              {profile?.role === "faculty" && "Manage your courses and inspire students."}
+              {profile?.role === "librarian" && "Manage library resources and help students."}
+              {profile?.role === "canteen_staff" && "Manage orders and keep the campus fed!"}
+              {profile?.role === "admin" && "Oversee the entire campus ecosystem."}
+            </p>
+          </div>
+          <div className="absolute right-0 top-0 h-full w-1/3 opacity-10">
+            <BookOpen className="h-full w-full" />
+          </div>
+        </div>
+
+        {/* Student View */}
+        {profile?.role === "student" && (
+          <>
+            {/* My Courses - Featured Section */}
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h2 className="text-2xl font-bold flex items-center gap-2">
+                    <BookOpen className="h-7 w-7 text-primary" />
+                    My Courses
+                  </h2>
+                  <p className="text-muted-foreground text-sm mt-1">
+                    {enrolledCourses.length === 0 
+                      ? "Enroll in courses to start learning" 
+                      : `You're enrolled in ${enrolledCourses.length} course${enrolledCourses.length !== 1 ? 's' : ''}`}
+                  </p>
+                </div>
+                <Button asChild>
+                  <Link to="/courses">
+                    <Plus className="mr-2 h-4 w-4" />
+                    Browse Courses
+                  </Link>
+                </Button>
+              </div>
+              {enrolledCourses.length === 0 ? (
+                <Card className="shadow-soft border-dashed">
+                  <CardContent className="flex flex-col items-center justify-center py-12">
+                    <div className="rounded-full bg-primary/10 p-4 mb-4">
+                      <BookOpen className="h-12 w-12 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-lg mb-2">No Courses Yet</h3>
+                    <p className="text-muted-foreground text-center mb-4 max-w-md">
+                      You haven't enrolled in any courses yet. Browse available courses below and start your learning journey!
+                    </p>
+                    <Button asChild size="lg">
+                      <Link to="/courses">
+                        <Plus className="mr-2 h-4 w-4" />
+                        Explore Courses
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {enrolledCourses.map((enrollment) => (
+                    <Card key={enrollment.id} className="hover:shadow-medium transition-all hover:scale-[1.02] border-2">
+                      <CardHeader className="pb-3">
+                        <div className="flex items-start justify-between mb-2">
+                          <Badge variant="secondary" className="font-mono">{enrollment.courses.code}</Badge>
+                          <Badge variant="outline" className="text-xs">{enrollment.courses.campus}</Badge>
+                        </div>
+                        <CardTitle className="text-lg leading-tight">{enrollment.courses.title}</CardTitle>
+                        <CardDescription className="line-clamp-2 text-sm">
+                          {enrollment.courses.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-2">
+                        <Button asChild className="w-full" size="sm">
+                          <Link to={`/courses/${enrollment.courses.id}`}>
+                            <BookOpen className="mr-2 h-4 w-4" />
+                            Open Course
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Available Courses */}
+            {availableCourses.length > 0 && (
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Available Courses</h2>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  {availableCourses.map((course) => (
+                    <Card key={course.id} className="hover:shadow-medium transition-shadow">
+                      <CardHeader>
+                        <Badge variant="outline" className="w-fit">{course.code}</Badge>
+                        <CardTitle className="text-lg">{course.title}</CardTitle>
+                        <CardDescription className="line-clamp-2">
+                          {course.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <Button
+                          onClick={() => enrollInCourse(course.id)}
+                          variant="outline"
+                          className="w-full"
+                        >
+                          <Plus className="mr-2 h-4 w-4" />
+                          Enroll Now
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Faculty View */}
+        {profile?.role === "faculty" && (
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold">My Courses</h2>
+              <Button asChild>
+                <Link to="/courses/create">
+                  <Plus className="mr-2 h-4 w-4" />
+                  Create Course
+                </Link>
+              </Button>
+            </div>
+            {createdCourses.length === 0 ? (
+              <Card className="shadow-soft">
+                <CardContent className="flex flex-col items-center justify-center py-12">
+                  <BookOpen className="h-12 w-12 text-muted-foreground mb-4" />
+                  <p className="text-muted-foreground text-center mb-4">
+                    You haven't created any courses yet.
+                  </p>
+                  <Button asChild>
+                    <Link to="/courses/create">
+                      <Plus className="mr-2 h-4 w-4" />
+                      Create Your First Course
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {createdCourses.map((course) => (
+                  <Card key={course.id} className="hover:shadow-medium transition-shadow">
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <Badge variant="secondary">{course.code}</Badge>
+                      </div>
+                      <CardTitle className="text-lg">{course.title}</CardTitle>
+                      <CardDescription className="line-clamp-2">
+                        {course.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      <Button asChild className="w-full">
+                        <Link to={`/courses/${course.id}`}>Manage Course</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Quick Stats */}
+        <div className="grid gap-4 md:grid-cols-3">
+          <Card className="shadow-soft">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Total Courses</CardTitle>
+              <BookOpen className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">
+                {profile?.role === "student" ? enrolledCourses.length : createdCourses.length}
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="shadow-soft">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Active This Week</CardTitle>
+              <Calendar className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{profile?.role === "student" ? upcomingOrders : greenLeaderboard.length}</div>
+              <p className="text-xs text-muted-foreground">
+                {profile?.role === "student"
+                  ? "Orders & pickups awaiting action"
+                  : "Peers leading sustainability scores"}
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="shadow-soft">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium">Campus Community</CardTitle>
+              <Users className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{profile?.campus}</div>
+              <p className="text-xs text-muted-foreground">Green points earned: {greenPoints}</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className="shadow-soft">
+          <CardHeader>
+            <CardTitle>Eco Leaders Spotlight</CardTitle>
+            <CardDescription>Cheer on campuses making sustainability a habit</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4 md:grid-cols-3">
+            {greenLeaderboard.length === 0 ? (
+              <p className="text-sm text-muted-foreground">
+                Log your first action in the Green Impact Lab to appear here.
+              </p>
+            ) : (
+              greenLeaderboard.map((entry, index) => (
+                <div key={entry.user_id} className="rounded-xl border p-4">
+                  <p className="text-xs text-muted-foreground">#{index + 1}</p>
+                  <p className="font-semibold">
+                    {entry.profiles?.full_name || "Student"}
+                  </p>
+                  <p className="text-xs text-muted-foreground">{entry.total_points} pts</p>
+                </div>
+              ))
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </DashboardLayout>
+  );
+};
+
+export default Dashboard;
+```
