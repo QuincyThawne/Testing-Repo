@@ -994,3 +994,204 @@ const Dashboard = () => {
 
 export default Dashboard;
 ```
+
+---
+
+### App.tsx
+
+```Typescript
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ChatProvider } from "./contexts/ChatContext";
+import Index from "./pages/Index";
+import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
+import Wallet from "./pages/Wallet";
+import Profile from "./pages/Profile";
+import Notifications from "./pages/Notifications";
+import NotFound from "./pages/NotFound";
+import { useAuth } from "./contexts/AuthContext";
+import Library from "./pages/Library";
+import LibraryManager from "./pages/LibraryManager";
+import Canteen from "./pages/Canteen";
+import OrderDashboard from "./pages/OrderDashboard";
+import Analytics from "./pages/Analytics";
+import Chatroom from "./pages/Chatroom";
+import Admin from "./pages/Admin";
+import GreenImpact from "./pages/GreenImpact";
+import FacultyDashboard from "./pages/FacultyDashboard";
+import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentCancel from "./pages/PaymentCancel";
+
+// Import individual course pages
+import DataStructuresPage from "./pages/courses/272ee11d-3aa7-48d7-afc6-8bd0f91cde8e";
+import DatabaseManagementPage from "./pages/courses/858bbcd5-2d21-4238-a354-dc2d37979a77";
+import WebDevelopmentPage from "./pages/courses/9150428c-716b-4967-93ce-7e7e99b60015";
+import MachineLearningPage from "./pages/courses/3d4c551a-4c78-4a0c-a41a-ff5994b3473a";
+import OperatingSystemsPage from "./pages/courses/8792b1b0-d0b8-445e-9b16-a923cb544d0c";
+import ComputerNetworksPage from "./pages/courses/886020fd-41c8-42fb-a910-a397bf479445";
+import SoftwareEngineeringPage from "./pages/courses/2eb3abc8-d17c-43f1-ba50-06bafd9d4c6c";
+import ArtificialIntelligencePage from "./pages/courses/053c6a77-ff7f-4170-8b1a-fed94bc15cdd";
+import MobileAppDevelopmentPage from "./pages/courses/cdec8e87-fc66-4ab6-a9d8-95a84c2574fd";
+import CloudComputingPage from "./pages/courses/0139ee69-03ef-471a-a5f6-53837b191af7";
+import AdvancedWebDevelopmentPage from "./pages/courses/28d3495b-5c7c-4165-9cf0-78bc52147504";
+
+
+const queryClient = new QueryClient();
+
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, loading } = useAuth();
+  
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+  
+  return user ? <>{children}</> : <Navigate to="/auth" />;
+};
+
+const RoleRoute = ({
+  children,
+  roles,
+}: {
+  children: React.ReactNode;
+  roles: Array<"student" | "faculty" | "librarian" | "canteen_staff" | "admin">;
+}) => {
+  const { profile, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (profile && roles.includes(profile.role)) {
+    return <>{children}</>;
+  }
+
+  return <Navigate to="/dashboard" />;
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AuthProvider>
+          <ChatProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/wallet" element={<ProtectedRoute><Wallet /></ProtectedRoute>} />
+              <Route path="/payment-success" element={<ProtectedRoute><PaymentSuccess /></ProtectedRoute>} />
+              <Route path="/payment-cancel" element={<ProtectedRoute><PaymentCancel /></ProtectedRoute>} />
+              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route path="/notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+              <Route path="/library" element={<ProtectedRoute><Library /></ProtectedRoute>} />
+              <Route path="/canteen" element={<ProtectedRoute><Canteen /></ProtectedRoute>} />
+              <Route path="/green-impact" element={<ProtectedRoute><GreenImpact /></ProtectedRoute>} />
+              <Route path="/courses" element={<ProtectedRoute><Courses /></ProtectedRoute>} />
+              
+              {/* Individual Course Detail Pages */}
+              <Route path="/courses/272ee11d-3aa7-48d7-afc6-8bd0f91cde8e" element={<ProtectedRoute><DataStructuresPage /></ProtectedRoute>} />
+              <Route path="/courses/858bbcd5-2d21-4238-a354-dc2d37979a77" element={<ProtectedRoute><DatabaseManagementPage /></ProtectedRoute>} />
+              <Route path="/courses/9150428c-716b-4967-93ce-7e7e99b60015" element={<ProtectedRoute><WebDevelopmentPage /></ProtectedRoute>} />
+              <Route path="/courses/3d4c551a-4c78-4a0c-a41a-ff5994b3473a" element={<ProtectedRoute><MachineLearningPage /></ProtectedRoute>} />
+              <Route path="/courses/8792b1b0-d0b8-445e-9b16-a923cb544d0c" element={<ProtectedRoute><OperatingSystemsPage /></ProtectedRoute>} />
+              <Route path="/courses/886020fd-41c8-42fb-a910-a397bf479445" element={<ProtectedRoute><ComputerNetworksPage /></ProtectedRoute>} />
+              <Route path="/courses/2eb3abc8-d17c-43f1-ba50-06bafd9d4c6c" element={<ProtectedRoute><SoftwareEngineeringPage /></ProtectedRoute>} />
+              <Route path="/courses/053c6a77-ff7f-4170-8b1a-fed94bc15cdd" element={<ProtectedRoute><ArtificialIntelligencePage /></ProtectedRoute>} />
+              <Route path="/courses/cdec8e87-fc66-4ab6-a9d8-95a84c2574fd" element={<ProtectedRoute><MobileAppDevelopmentPage /></ProtectedRoute>} />
+              <Route path="/courses/0139ee69-03ef-471a-a5f6-53837b191af7" element={<ProtectedRoute><CloudComputingPage /></ProtectedRoute>} />
+              <Route path="/courses/28d3495b-5c7c-4165-9cf0-78bc52147504" element={<ProtectedRoute><AdvancedWebDevelopmentPage /></ProtectedRoute>} />
+              
+              {/* Generic course detail fallback for other courses */}
+
+
+                <Route path="/courses/:courseId" element={<ProtectedRoute><CourseDetail /></ProtectedRoute>} />
+              <Route
+                path="/faculty"
+                element={
+                  <ProtectedRoute>
+                    <RoleRoute roles={["faculty"]}>
+                      <FacultyDashboard />
+                    </RoleRoute>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/chatroom"
+                element={
+                  <ProtectedRoute>
+                    <RoleRoute roles={["student"]}>
+                      <Chatroom />
+                    </RoleRoute>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/library-manager"
+                element={
+                  <ProtectedRoute>
+                    <RoleRoute roles={["librarian"]}>
+                      <LibraryManager />
+                    </RoleRoute>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/order-dashboard"
+                element={
+                  <ProtectedRoute>
+                    <RoleRoute roles={["canteen_staff"]}>
+                      <OrderDashboard />
+                    </RoleRoute>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/analytics"
+                element={
+                  <ProtectedRoute>
+                    <RoleRoute roles={["faculty", "librarian", "canteen_staff", "admin"]}>
+                      <Analytics />
+                    </RoleRoute>
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <RoleRoute roles={["admin"]}>
+                      <Admin />
+                    </RoleRoute>
+                  </ProtectedRoute>
+                }
+              />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </ChatProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
+
+```
