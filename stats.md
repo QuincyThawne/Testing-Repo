@@ -128,14 +128,3 @@ Do **150–300 min/week** (moderate) or **75–150 min/week** (vigorous):
 * 30-min movement break every 2 hours
 * 8,000–10,000 steps/day
 
----
-
-## **8) Developer Implementation Notes**
-
-* Add **toggle**: per-capita baseline (13.6 vs 19.3 kg).
-* Integrate monthly SEA import data + DFPD/NITI supply data.
-* Use regional oil preference maps to personalize diet suggestions.
-* Build AI tools for **food oil estimation** via images.
-* Provide health-risk scores using user’s oil use + BMI + sugars + lipids.
-* Push **daily nudges**: low-oil cooking + physical activity reminders.
-
