@@ -276,3 +276,38 @@ Overall, combining education, technology, and incentives can meaningfully reduce
 
 ---
 
+## References
+
+[1]  Press Release:Press Information Bureau
+https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=2049737®=3&lang=2
+[2] [6] [15] Every Indian now consumes 24 kg edible oil a year, triple the 2001 level | Agriculture - Business Standard
+https://www.business-standard.com/industry/agriculture/india-edible-oil-consumption-tripled-imports-health-obesity-palm-oil-125042100484_1.html
+[3] [5] [37] Global Burden of Disease (GBD) Report | India’s Disease Burden Shifting Towards Non-Communicable Diseases (NCDs)
+https://www.thepresspad.com/post/global-burden-of-disease-gbd-report-india-s-disease-burden-shifting-towards-non-communicable-dis
+[4] [9] [16] [23] [27] [34] FSSAI backs PM Modi’s obesity plan with push to cut oil and sugar
+https://www.foodnavigator-asia.com/Article/2025/08/05/fssai-backs-pm-modis-obesity-plan-with-push-to-cut-oil-and-sugar/
+[7] [17] [18] [21] [22] [25]  Press Release:Press Information Bureau
+https://www.pib.gov.in/PressReleasePage.aspx?PRID=2061646®=3&lang=2
+[8] [20] [36]  Press Release:Press Information Bureau
+https://www.pib.gov.in/PressReleasePage.aspx?PRID=2107179®=3&lang=2
+[10] [19]  Press Note Details: Press Information Bureau
+https://www.pib.gov.in/PressNoteDetails.aspx?id=154849&NoteId=154849&ModuleId=3®=3&lang=2
+[11] [12] Analyzing trends and innovations in the regional consumption for blended oils, ETRetail
+https://retail.economictimes.indiatimes.com/blog/analyzing-trends-and-innovations-in-the-regional-consumption-for-blended-oils/113940770
+[13] [14] [26] Centre advises states to reduce usage of cooking oil by 10% in school meals | India News
+https://www.hindustantimes.com/india-news/centre-advises-states-to-reduce-usage-of-cooking-oil-by-10-in-school-meals-101742126825552.html
+[24] [35] apps.fas.usda.gov
+https://apps.fas.usda.gov/newgainapi/api/Report/DownloadReportByFileName?fileName=Oilseeds%20and%20Products%20Annual_New%20Delhi_India_IN2025-0021.pdf
+[28] [PDF] Healthier Choice Symbol Nutrient Guidelines - HealthHub
+https://ch-api.healthhub.sg/api/public/content/4e9a5f62216f4f10a92e245b3cd8b477?v=8746529a
+[29] [PDF] A GUIDE FOR HEALTHIER CHOICE SYMBOL (HCS) APPLICATION
+https://www.hpb.gov.sg/docs/default-source/pdf/a-guide-for-healthier-choice-symbol-application-2024.pdf?sfvrsn=c8151598_4
+[30] Why has Japan become the world’s most long-lived country: insights from a food and nutrition perspective | European Journal of Clinical Nutrition
+https://www.nature.com/articles/s41430-020-0677-5?error=cookies_not_supported&code=5d468b8f-f59e-4024-a0b5-4da019376e0d
+[31] Healthiest Countries 2025
+https://worldpopulationreview.com/country-rankings/healthiest-countries
+[32] The Role of Mobile Apps in Obesity Management - PubMed Central
+https://pmc.ncbi.nlm.nih.gov/articles/PMC12093073/
+[33] India's Call for Action on Noncommunicable Diseases | Think Global Health
+https://www.thinkglobalhealth.org/article/indias-call-action-noncommunicable-diseases
+
